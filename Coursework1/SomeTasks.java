@@ -67,11 +67,11 @@ public class SomeTasks {
 				return;
 		}
 		if (N >= 5) {
-			final long [] xa = new long [N];
+			final long [] a = new long [N];
 			long arraysum = 0;
 			long arraymin = Long.MAX_VALUE;
 			long permsum = 0;
-			boolean res = true;
+			boolean res = false;
 			for (int i = 0; i < N; ++i)	{
 				a[i] = Integer.parseInt(args[i]);
 				arraysum += a[i];
@@ -80,10 +80,12 @@ public class SomeTasks {
 			for (int j = 0; j < N -1; ++j) {
 				permsum += (arraymin += 1);
 			}
-			if (arraysum == permsum)
-				System.out.println(true);
-			else 
-				System.out.println(false);
+			if (arraysum == permsum) {
+				res = true;
+				System.out.println(res);
+			}
+			else System.out.println(res);
+			return;
 		} 	
 	}
 }
