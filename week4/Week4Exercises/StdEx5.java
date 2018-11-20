@@ -1,11 +1,12 @@
 class StdEx5 {
 	public static void main(String[]args) {
 		int N = Integer.parseInt(args[0]);
-		final int i = N + 10;
+		int sum = 0;
+		final int i = N + 5;
 		do{
-			System.out.println(N+=1);
+			sum += (N+=1);
 		}
-		while (N < i) ;
-
+		while (N < i-1) ;
+		System.out.println(sum);	
 	}
 }
