@@ -53,7 +53,7 @@ public class SomeTasks {
 			return;	
 		}
 		if (N == 4) {
-			String s = args[0];
+			final String s = args[0];
 			int minlen = s.length();
 			int newlen = s.length();
 			for (int i = 0; i < N; ++i){
