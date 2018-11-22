@@ -71,7 +71,6 @@ public class SomeTasks {
 			long arraysum = 0;
 			long arraymin = Long.MAX_VALUE;
 			long permsum = 0;
-			boolean res = false;
 			for (int i = 0; i < N; ++i)	{
 				a[i] = Integer.parseInt(args[i]);
 				arraysum += a[i];
@@ -80,12 +79,10 @@ public class SomeTasks {
 			for (int j = 0; j < N -1; ++j) {
 				permsum += (arraymin += 1);
 			}
-			if (arraysum == permsum) {
-				res = true;
-				System.out.println(res);
-			}
-			else System.out.println(res);
-			return;
+			boolean res = true;
+			if (arraysum != permsum) res = false;
+			System.out.println(res);
+			return;	
 		} 	
 	}
 }
