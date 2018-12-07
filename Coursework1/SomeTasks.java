@@ -9,7 +9,7 @@ public class SomeTasks {
 			long newsum = 0;
 			long oldsum = 0;
 			final int nth = Integer.parseInt(args[0]);
-			for(long i = 0; i <= nth; i++){ 
+			for(long i = 0; i <= nth; ++i){ 
 				newsum += i * i;
 				oldsum = newsum - i * i;
 				if (newsum < oldsum) {
