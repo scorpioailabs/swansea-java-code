@@ -1,4 +1,4 @@
-class Exercises07 {
+class Exercises7 {
 
   public static boolean odd(final boolean a, final boolean b, final boolean c) {
     final int ba = a ? 1 : 0;
@@ -24,5 +24,44 @@ class Exercises07 {
   public static boolean triangular(final double a, final double b, final double c) {
     return (a < b+c) && (b < a+c) && (c < a+b);
   }
-  
+  //testing below
+  public static void main(final String[] args) {
+        
+    {
+     int[] a = null;
+     int[] b = null;
+     assert(equal(a,b));
+     a = new int[0];
+     assert(! equal(a,b));
+     assert(! equal(b,a));
+     b = new int[0];
+     assert(equal(a,b));
+     a = new int[2]; a[0] = 1; a[1] = 2;
+     assert(! equal(a,b));
+     assert(! equal(b,a));
+     b = new int[2];
+     assert(! equal(a,b));
+     assert(! equal(b,a));
+     b[0] = 1;
+     assert(! equal(a,b));
+     assert(! equal(b,a));
+     b[1] = 2;
+     assert(equal(a,b));
+     assert(equal(b,a));
+    }
+    
+    final int N = 100;
+    for (int i = -N; i <= N; ++i) {
+      final double di = (double) i;
+      for (int j = -N; j <= N; ++j) {
+        final double dj = (double) j;
+        for (int k = -N; k <= N; ++k) {
+          final double dk = (double) k;
+          final boolean res = triangular(di,dj,dk);
+          assert(res == ((di < dj+dk) && (dj < di+dk) && (dk < di+dj)));
+        }
+      }
+    }
+  }
 }
+  

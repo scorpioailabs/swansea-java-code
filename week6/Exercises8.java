@@ -59,4 +59,37 @@ class Exercises8 {
     a[j] = t;
   }
 
-}
+//testing:
+
+  public static void main(final String[] args) {
+
+    assert(leq(1,1) == true);
+    assert(leq(1,2) == true);
+    assert(leq(1,0) == false);
+
+    assert(sgn(-2) == -1);
+    assert(sgn(0.0) == 0);
+    assert(sgn(4.7) == 1);
+    assert(sgn(Double.NaN) == 0); // so well
+    assert(sgn(Double.POSITIVE_INFINITY) == 1);
+    assert(sgn(Double.NEGATIVE_INFINITY) == -1);
+
+    assert(eqarr(fill(1,2,3), sort(3,2,1)));
+    assert(eqarr(fill(1,2,3), sort(1,2,3)));
+    for (int i = -3; i <= 3; ++i)
+      for (int j = -3; j <= 3; ++j)
+        for (int k = -3; k <= 3; ++k)
+    assert(xor(null) == false);
+    boolean[] a = new boolean[0];
+    assert(and(a) == true);
+    assert(xor(a) == false);
+    a = new boolean[1];
+    assert(and(a) == false);
+    assert(xor(a) == false);
+    a[0] = true;
+    assert(and(a) == true);
+    assert(xor(a) == true);
+
+        }
+    }
+
