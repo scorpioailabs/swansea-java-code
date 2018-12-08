@@ -21,10 +21,10 @@ class Exercises8 {
 		if(sorted[1] < sorted [0])swap(sorted,0,1); 
 		return sorted;
 	}
-	public static double pow2(final int e){
+	public static long pow2(final int e){
 		final int a = 1;
 		final int b = 2;
-		double eqn = 1;
+		long eqn = 1;
 		for(int i =0; i< e; i++) {
 			eqn *= a * b;
 		}
