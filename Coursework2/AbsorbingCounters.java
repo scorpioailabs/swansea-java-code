@@ -6,14 +6,17 @@ class AbsorbingCounter {
   long counter;
 
   public AbsorbingCounter(long minimum, long maximum) {
-    // XXX
     if (maximum > minimum) {
       this.max = maximum; this.min = minimum;
+      counter = (max + min) / 2;
+    }
+    else if (minimum > maximum) {
+      this.min = maximum; this.max = minimum;
+      counter = (min + max) / 2;
     }
     else {
-      this.min = maximum; this.max = minimum;
+      this.min = minimum; this.max = maximum;counter = this.min;
     }
-    counter = (min + max) / 2; 
   }
 
   // XXX Five public methods (non-static functions)
@@ -31,11 +34,10 @@ class AbsorbingCounter {
     }
 
   public boolean reached_min() {
-        return this.counter == this.min;
+    return val() == this.min;
   }
-
   public boolean reached_max() {
-        return this.counter == this.max;
+    return val() == this.max;
   }
   public String toString() {
     return "[" + this.min + "," + this.counter + "," + this.max + "]"; 
@@ -151,7 +153,6 @@ class Stats {
   }
 }
 
-
 class Experiment {
   public static final long default_seed = 0;
   private static Random r = new Random(default_seed);
@@ -192,7 +193,7 @@ class Experiment {
   
   public static void run_experiment(final AbsorbingCounter[] e,
     final long T) {
-        for(long j = 0; j < T; j++){
+        for(long j = 0; j < T; ++j){
             double temp = random() * e.length;
             int i = (int) temp;
             double p = random();
@@ -213,28 +214,27 @@ class Experiment {
             }
           }
     
-
   public static Stats evaluate_experiment(final AbsorbingCounter[] e) {
     Stats s = new Stats();
-    int countMin = 0;
-    int countMax = 0;
+    long minCount = 0;
+    long maxCount = 0;;
     double mean = 0;
-    for(int i = 0; i < e.length; i ++){
+    for(int i = 0; i < e.length; i++){
       mean += e[i].counter;
       if(e[i].reached_min()){
-          countMin+=1;
-      } else if(e[i].reached_max()){
-        countMax+=1;
+        minCount  +=1;
+      } 
+      if(e[i].reached_max()){
+        maxCount+=1;
       }
-    } 
+    }
     mean = mean / e.length;
     s.average = mean;
-    s.count_max_reached = countMax;
-    s.count_min_reached = countMin;
+    s.count_max_reached = maxCount;
+    s.count_min_reached = minCount;
 
       return s;
   }
-
 
   public static void main(final String[] args ) {
     if (args.length < 3) {
