@@ -1,10 +1,7 @@
 import java.util.Random;
-
 class AbsorbingCounter {
-  // XXX instance variables
   final long min, max;
   long counter;
-
   public AbsorbingCounter(long minimum, long maximum) {
     if (maximum > minimum) {
       this.max = maximum; this.min = minimum;
@@ -16,24 +13,17 @@ class AbsorbingCounter {
     }
     else {
       this.max = maximum; this.min = minimum; counter = this.max;
-      } 
-    }
-  
-
-  // XXX Five public methods (non-static functions)
-
+    } 
+  }
   public long val() {
     return this.counter;
   }
-
   public void inc() {
     if (val() < this.max) this.counter++;
-    }
-
+  }
   public void dec() {
     if (val() > this.min) this.counter--;
-    }
-
+  }
   public boolean reached_min() {
     return val() == this.min;
   }
@@ -43,7 +33,6 @@ class AbsorbingCounter {
   public String toString() {
     return "[" + this.min + "," + this.counter + "," + this.max + "]"; 
   }
-
   public boolean equals(final AbsorbingCounter other) {
     AbsorbingCounter that = (AbsorbingCounter) other;
     return that.min == this.min  && that.max == this.max && that.counter == this.counter;
@@ -141,7 +130,6 @@ class AbsorbingCounter {
   }
 }
 
-
 class Stats {
   public long count_min_reached, count_max_reached;
   public double average;
@@ -169,9 +157,8 @@ class Experiment {
   }
 
   public static int make_positive(final int x) {
-    if (x > 0) return x;
-    else return default_size;
-  }
+    if (x > 0) return x; else return default_size;
+  }  
   public static int min(final int x, final long y) {
     if (y < x) return (int) y; else return x;
   }
@@ -191,34 +178,24 @@ class Experiment {
       exp[i] = new AbsorbingCounter(min, max);
     return exp;
   }
-  
   public static void run_experiment(final AbsorbingCounter[] e,
     final long T) {
-        for(long j = 0; j < T; ++j){
-            double temp = random() * e.length;
-            int i = (int) temp;
-            double p = random();
-            if(p <= 0.5){
-                if(e[i].reached_max() || e[i].reached_min()){
-
-                } else {
-                    e[i].dec();
-                }
-            }
-            else {
-                if(e[i].reached_max() || e[i].reached_min()){
-
-                } else {
-                    e[i].inc();
-                }
-              }
-            }
-          }
-    
+    for(long j = 0; j < T; ++j){
+      double temp = random() * e.length;
+      int i = (int) temp;
+      double p = random();
+      if(p <= 0.5){
+        if(e[i].reached_max() || e[i].reached_min()){ }
+          else e[i].dec();
+      }
+      else if (e[i].reached_max() || e[i].reached_min()) { }
+        else e[i].inc();
+    }
+  }  
   public static Stats evaluate_experiment(final AbsorbingCounter[] e) {
     Stats s = new Stats();
     long minCount = 0;
-    long maxCount = 0;;
+    long maxCount = 0;
     double mean = 0;
     for(int i = 0; i < e.length; i++){
       mean += e[i].counter;
@@ -233,8 +210,7 @@ class Experiment {
     s.average = mean;
     s.count_max_reached = maxCount;
     s.count_min_reached = minCount;
-
-      return s;
+    return s;
   }
 
   public static void main(final String[] args ) {
