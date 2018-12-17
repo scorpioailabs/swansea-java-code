@@ -8,16 +8,17 @@ class AbsorbingCounter {
   public AbsorbingCounter(long minimum, long maximum) {
     if (maximum > minimum) {
       this.max = maximum; this.min = minimum;
-      counter = (max + min) / 2;
+      counter = ((max - min) / 2) + min;
     }
     else if (minimum > maximum) {
       this.min = maximum; this.max = minimum;
-      counter = (min + max) / 2;
+      counter = ((min - max) / 2) + max;
     }
     else {
-      this.min = minimum; this.max = maximum;counter = this.min;
+      this.max = maximum; this.min = minimum; counter = this.max;
+      } 
     }
-  }
+  
 
   // XXX Five public methods (non-static functions)
 
