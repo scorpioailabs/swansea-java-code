@@ -196,18 +196,17 @@ class Experiment {
     Stats s = new Stats();
     long minCount = 0;
     long maxCount = 0;
-    double mean = 0;
+    double counterSum = 0;
     for(int i = 0; i < e.length; i++){
-      mean += e[i].counter;
+      counterSum += e[i].counter;
       if(e[i].reached_min()){
-        minCount  +=1;
+        minCount +=1;
       } 
       if(e[i].reached_max()){
-        maxCount+=1;
+        maxCount +=1;
       }
     }
-    mean = mean / e.length;
-    s.average = mean;
+    s.average = counterSum / e.length;
     s.count_max_reached = maxCount;
     s.count_min_reached = minCount;
     return s;
